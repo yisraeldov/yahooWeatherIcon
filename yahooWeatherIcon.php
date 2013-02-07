@@ -1,7 +1,9 @@
 <?PHP
 
 //curl "http://weather.yahooapis.com/forecastrss?w=1968207&u=c" | grep -Po '(?s)Current Conditions:.*?<BR />$' | /usr/local/bin/w3m -dump  -T text/html
-$locationId = '1968207';
+
+//get the location from the query string and default to rechovot
+$locationId = empty($_REQUEST['w'])?'1968207':$_REQUEST['w'];
 $url = "http://weather.yahooapis.com/forecastrss?w=$locationId&u=c";
 $xml = new SimpleXmlElement($url,LIBXML_NOCDATA,1);
 $description = $xml->channel->item->description;
