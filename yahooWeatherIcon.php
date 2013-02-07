@@ -1,7 +1,8 @@
 <?PHP
 
 //curl "http://weather.yahooapis.com/forecastrss?w=1968207&u=c" | grep -Po '(?s)Current Conditions:.*?<BR />$' | /usr/local/bin/w3m -dump  -T text/html
-$url = "http://weather.yahooapis.com/forecastrss?w=1968207&u=c";
+$locationId = '1968207';
+$url = "http://weather.yahooapis.com/forecastrss?w=$locationId&u=c";
 $xml = new SimpleXmlElement($url,LIBXML_NOCDATA,1);
 $description = $xml->channel->item->description;
 preg_match('/<img src="([^"]*)"/i',$description,$result);
