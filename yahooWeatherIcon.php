@@ -19,9 +19,12 @@ $black = imagecolorallocate($im, 0, 0, 0);
 // Make the background transparent
 imagecolortransparent($im, $black);
 $y = 0;
+
+//this is where you set the text color
+$textColor = imagecolorallocate($im, 255, 255, 200);
 foreach(explode("\n",$text) as $line){
     if(strlen($line)>0 and $line!='Full Forecast at Yahoo! Weather' and $line != '(provided by The Weather Channel)'){
-        imagestring($im,2,$gifH,$y,$line,imagecolorallocate($im, 255, 255, 200));
+        imagestring($im,2,$gifH,$y,$line,$textColor);
         $y+=9;
     }
 }
